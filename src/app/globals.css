@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-[#030408] text-white;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+
+.custom-scrollbar:hover {
+  scrollbar-color: #888 transparent;
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: #888; /* light grey scrollbar on hover */
+}
+
+@media (prefers-color-scheme: dark) {
+  .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: #666; /* darker grey in dark mode */
+  }
+}
+.layout {
+  background: radial-gradient(
+    150% 100% at top center,
+    rgba(63, 1, 135, 0.8) 0%,
+    transparent 25%
+  );
+}
+
+@media (max-width: 768px) {
+  .layout {
+    background-size: auto;
+  }
+}
+button {
+  cursor: pointer;
+}
