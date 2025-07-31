@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 
 const ChatRight = ({ isOpen, setIsOpen }) => {

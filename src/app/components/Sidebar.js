@@ -2,18 +2,12 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { FaMagic, FaStar, FaDiscord } from "react-icons/fa";
+import { FaStar, FaDiscord } from "react-icons/fa";
 import {
   IoIosArrowBack,
   IoIosArrowDown,
   IoIosArrowForward,
 } from "react-icons/io";
-import { GiDiamondTrophy } from "react-icons/gi";
-
-import { GoHomeFill } from "react-icons/go";
-import { IoChatbubbleOutline, IoDiamondOutline } from "react-icons/io5";
-import { MdDashboard } from "react-icons/md";
-import { RiImageAiLine } from "react-icons/ri";
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";

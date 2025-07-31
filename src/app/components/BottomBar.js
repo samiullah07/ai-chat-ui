@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { FaHome, FaUser, FaSave } from "react-icons/fa";
 
 const BottomBar = () => {
   return (

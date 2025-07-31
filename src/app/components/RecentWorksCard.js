@@ -1,4 +1,4 @@
-import { BsThreeDots, BsThreeDotsVertical } from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
 
 const RecentWorksCard = ({ imageUrl, title }) => {
   return (
