@@ -42,31 +42,39 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+  
   return (
     <>
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-screen w-[260px] z-40 transition-transform duration-300 transform border-r border-[#1F2022] ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 left-0 h-screen z-40 transition-all duration-300 border-r border-[#1F2022] ${
+          isOpen ? "w-[260px]" : "w-[80px]"
         }`}
       >
         {/* Top */}
         <div className="flex flex-col justify-between h-full overflow-y-auto px-4 py-6 custom-scrollbar">
           <div>
             {/* Logo */}
-            <div className="mb-8">
-              <Image src={"/logo.svg"} alt="logo" width={150} height={150} />
+            <div className={"mb-8 flex items-center " + (isOpen ? " justify-start" : " justify-center")}>
+              {isOpen ? (
+                <Image src={"/logo.svg"} alt="logo" width={150} height={150} />
+              ) : (
+                <div className="w-8 h-8 bg-[#3F0187] rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">L</span>
+                </div>
+              )}
             </div>
 
             {/* General Section */}
             <div className="mb-6">
-              <p className="text-sm font-semibold text-white mb-2">General</p>
+              {isOpen && <p className="text-sm font-semibold text-white mb-2">General</p>}
               <ul className="space-y-2">
                 <Link
                   href={"/"}
                   className={`flex items-center gap-3 px-3 py-2 rounded-full cursor-pointer ${isActive(
                     "/"
-                  )}`}
+                  )} ${!isOpen ? "justify-center" : ""}`}
+                  title={!isOpen ? "Homepage" : ""}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -83,13 +91,14 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     />
                   </svg>
 
-                  <span className="text-sm font-medium">Homepage</span>
+                  {isOpen && <span className="text-sm font-medium">Homepage</span>}
                 </Link>
                 <Link
                   href={"/chat"}
                   className={`flex items-center gap-3 px-3 py-2 rounded-full cursor-pointer ${isActive(
                     "/chat"
-                  )}`}
+                  )} ${!isOpen ? "justify-center" : ""}`}
+                  title={!isOpen ? "Chat" : ""}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -107,12 +116,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     />
                   </svg>
 
-                  <span className="text-sm">Chat</span>
+                  {isOpen && <span className="text-sm">Chat</span>}
                 </Link>
                 <li
                   className={`flex items-center gap-3 px-3 py-2 rounded-full cursor-pointer ${isActive(
                     "/my-ai"
-                  )}`}
+                  )} ${!isOpen ? "justify-center" : ""}`}
+                  title={!isOpen ? "Generate Image" : ""}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -139,12 +149,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     </defs>
                   </svg>
 
-                  <span className="text-sm">Generate Image</span>
+                  {isOpen && <span className="text-sm">Generate Image</span>}
                 </li>
                 <li
                   className={`flex items-center gap-3 px-3 py-2 rounded-full cursor-pointer ${isActive(
                     "/create-character"
-                  )}`}
+                  )} ${!isOpen ? "justify-center" : ""}`}
+                  title={!isOpen ? "Create Character" : ""}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -159,12 +170,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     />
                   </svg>
 
-                  <span className="text-sm">Create Character</span>
+                  {isOpen && <span className="text-sm">Create Character</span>}
                 </li>
                 <li
                   className={`flex items-center gap-3 px-3 py-2 rounded-full cursor-pointer ${isActive(
                     "/my-ai"
-                  )}`}
+                  )} ${!isOpen ? "justify-center" : ""}`}
+                  title={!isOpen ? "My AI" : ""}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -179,13 +191,14 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     />
                   </svg>
 
-                  <span className="text-sm">My AI</span>
+                  {isOpen && <span className="text-sm">My AI</span>}
                 </li>
 
                 <li
                   className={`flex items-center gap-3 px-3 py-2 rounded-full cursor-pointer ${isActive(
                     "/become-premium"
-                  )}`}
+                  )} ${!isOpen ? "justify-center" : ""}`}
+                  title={!isOpen ? "Become Premium" : ""}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -200,18 +213,19 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     />
                   </svg>
 
-                  <span className="text-sm">Become Premium</span>
+                  {isOpen && <span className="text-sm">Become Premium</span>}
                 </li>
               </ul>
             </div>
 
             {/* AI Tools Section */}
             <div>
-              <p className="text-sm font-semibold text-white mb-2">AI Tools</p>
+              {isOpen && <p className="text-sm font-semibold text-white mb-2">AI Tools</p>}
               <ul className="space-y-2 relative">
                 <li
-                  className="flex items-center justify-between px-3 py-2 cursor-pointer"
-                  onClick={() => setLanguageOpen(!languageOpen)}
+                  className={`flex items-center justify-between px-3 py-2 cursor-pointer ${!isOpen ? "justify-center" : ""}`}
+                  onClick={() => isOpen && setLanguageOpen(!languageOpen)}
+                  title={!isOpen ? selectedLang.label : ""}
                 >
                   <div className="flex items-center gap-3">
                     <Image
@@ -221,13 +235,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                       height={100}
                       className="rounded-full object-cover h-5 w-5"
                     />
-                    <span className="text-sm">{selectedLang.label}</span>
+                    {isOpen && <span className="text-sm">{selectedLang.label}</span>}
                   </div>
-                  {languageOpen ? <IoIosArrowDown /> : <IoIosArrowForward />}
+                  {isOpen && (languageOpen ? <IoIosArrowDown /> : <IoIosArrowForward />)}
                 </li>
 
                 {/* Dropdown Menu */}
-                {languageOpen && (
+                {languageOpen && isOpen && (
                   <ul className="absolute left-0 mt-1 w-full bg-[#3F0187] rounded-md shadow-lg z-50 border dark:border-[#333]">
                     {languages.map((lang) => (
                       <li
@@ -252,11 +266,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 )}
 
                 {/* Other Tools */}
-                <li className="flex items-center gap-3 px-3 py-2 text-[#AFAFAF] cursor-pointer">
+                <li className={`flex items-center gap-3 px-3 py-2 text-[#AFAFAF] cursor-pointer ${!isOpen ? "justify-center" : ""}`} title={!isOpen ? "Discord" : ""}>
                   <FaDiscord size={20} />
-                  <span className="text-sm">Discord</span>
+                  {isOpen && <span className="text-sm">Discord</span>}
                 </li>
-                <li className="flex items-center gap-3 px-3 py-2 text-[#AFAFAF] cursor-pointer">
+                <li className={`flex items-center gap-3 px-3 py-2 text-[#AFAFAF] cursor-pointer ${!isOpen ? "justify-center" : ""}`} title={!isOpen ? "Affiliate" : ""}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -270,32 +284,34 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                     />
                   </svg>
 
-                  <span className="text-sm">Affiliate</span>
+                  {isOpen && <span className="text-sm">Affiliate</span>}
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Premium Section */}
-          <div className="bg-[linear-gradient(133deg,_#3F0187_50%,_#280056_100%)]  rounded-2xl p-4 py-6 text-center text-white mt-8">
-            <div className="flex justify-center mb-2">
-              <FaStar className="text-3xl text-[#F2C66D]" />
+          {isOpen && (
+            <div className="bg-[linear-gradient(133deg,_#3F0187_50%,_#280056_100%)]  rounded-2xl p-4 py-6 text-center text-white mt-8">
+              <div className="flex justify-center mb-2">
+                <FaStar className="text-3xl text-[#F2C66D]" />
+              </div>
+              <h2 className="font-semibold mb-2">Premium Plan</h2>
+              <p className="text-xs mb-4">
+                Upgrade your free plan <br /> into premium plan
+              </p>
+              <button className="bg-white text-black rounded-full w-full text-sm font-semibold py-3 px-4">
+                Go Premium
+              </button>
             </div>
-            <h2 className="font-semibold mb-2">Premium Plan</h2>
-            <p className="text-xs mb-4">
-              Upgrade your free plan <br /> into premium plan
-            </p>
-            <button className="bg-white text-black rounded-full w-full text-sm font-semibold py-3 px-4">
-              Go Premium
-            </button>
-          </div>
+          )}
         </div>
       </div>
 
       {/* Toggle Arrow */}
       <div
         className={`p-1 text-2xl bg-white rounded-full text-black shadow-[0_0_2px_0_rgba(0,0,0,0.25)] fixed top-6 z-50 transition-all duration-300 cursor-pointer ${
-          isOpen ? "left-[242px]" : "left-2"
+          isOpen ? "left-[242px]" : "left-[62px]"
         }`}
         onClick={() => setIsOpen(!isOpen)}
       >
