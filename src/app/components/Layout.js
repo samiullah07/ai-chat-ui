@@ -23,7 +23,7 @@ function Layout({ children }) {
 
         {/* Main Content */}
         <main
-          className={`flex-1 transition-all duration-300 ease-in-out ${
+          className={`flex-1 transition-all overflow-x-hidden duration-300 ease-in-out ${
             isSidebarOpen ? "md:ml-[260px]" : "md:ml-[80px]"
           }`}
         >
