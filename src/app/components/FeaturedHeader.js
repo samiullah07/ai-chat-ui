@@ -10,8 +10,8 @@ const categories = [
 
 const FeaturedHeader = ({ selected, setSelected }) => {
   return (
-    <div className="overflow-hidden w-svw md:w-full">
-      <div className="flex gap-3 flex-nowrap md:overflow-hidden overflow-x-auto w-full md:w-full mb-6">
+    <div className="overflow-hidden w-full">
+      <div className="flex gap-3 flex-nowrap  overflow-x-auto w-full mb-6">
         {categories.map((cat) => (
           <button
             key={cat}
