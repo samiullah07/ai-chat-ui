@@ -18,8 +18,10 @@ const cards = [
 const RecentWorks = () => {
   return (
     <div className=" hidden md:block">
-      <h1 className="text-2xl mb-5 font-semibold ">Recent Works</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <h1 className="text-xl sm:text-2xl mb-4 sm:mb-5 font-semibold px-4 sm:px-0">
+        Recent Works
+      </h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 px-4 sm:px-0">
         {cards.map((card, index) => (
           <RecentWorksCard
             key={index}
