@@ -58,7 +58,7 @@ const FeaturedImages = () => {
       </h2>
       <FeaturedHeader selected={selected} setSelected={setSelected} />
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {featuredImages.map((item) => (
           <FeaturedCard key={item.id} item={item} />
         ))}
